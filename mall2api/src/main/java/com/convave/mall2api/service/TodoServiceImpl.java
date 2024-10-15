@@ -57,7 +57,11 @@ public class TodoServiceImpl implements TodoService {
 		Optional<Todo> result = todoRepository.findById(todoDTO.getTno());
 		Todo todo = result.orElseThrow(() -> new IllegalArgumentException("데이터 없음"));
 
-		todo.update("수정" + todo.getTno(),"수정자",true);
+		todo.update(
+				todoDTO.getTitle(),
+				todoDTO.getWriter(),
+				todoDTO.getDueDate(),
+				todoDTO.isComplete());
 
 		todoRepository.save(todo);
 

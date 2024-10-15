@@ -22,9 +22,10 @@ public class Todo {
 	private boolean complete;
 	private LocalDate dueDate;
 
-	public void update(String title, String writer, boolean complete){
+	public void update(String title, String writer, LocalDate dueDate, boolean complete){
 		this.title = title;
 		this.writer = writer;
+		this.dueDate = dueDate;
 		this.complete = complete;
 	}
 }

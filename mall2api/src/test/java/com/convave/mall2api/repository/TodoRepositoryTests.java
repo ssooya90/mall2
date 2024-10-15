@@ -73,7 +73,7 @@ public class TodoRepositoryTests {
 		Todo todo = result.orElseThrow(()
 				-> new IllegalArgumentException("데이터 없음"));
 
-		todo.update("modify " + tno,"작성자 수정",true);
+		todo.update("modify " + tno,"작성자 수정",null,true);
 
 		todoRepository.save(todo);
 	}

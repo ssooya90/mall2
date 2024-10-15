@@ -1,5 +1,6 @@
 import React, {useCallback} from 'react';
 import {createSearchParams, useNavigate, useParams, useSearchParams} from "react-router-dom";
+import ModifyComponent from "../../components/todo/ModifyComponent";
 
 const ModifyPage = () => {
 
@@ -12,7 +13,6 @@ const ModifyPage = () => {
 	const size = queryParams.get("size") ? parseInt(queryParams.get("size")) : 10
 
 	const queryStr = createSearchParams({page, size}).toString();
-	console.log(queryStr)
 
 
 	const moveToRead = useCallback((tno) => {
@@ -39,6 +39,9 @@ const ModifyPage = () => {
 				<div className={"text-2xl"}>
 					Todo Modify Page Component {tno}
 				</div>
+
+				<ModifyComponent tno={tno}/>
+
 
 
 				<div className={"flex justify-end p-4"}>

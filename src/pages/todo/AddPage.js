@@ -1,9 +1,11 @@
 import React from 'react';
+import AddComponent from "../../components/todo/AddComponent";
 
 const AddPage = () => {
 	return (
 			<div>
-				Add
+
+				<AddComponent/>
 
 			</div>
 	);
