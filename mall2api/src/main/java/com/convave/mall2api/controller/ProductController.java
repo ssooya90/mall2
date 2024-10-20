@@ -68,7 +68,7 @@ public class ProductController {
 
 	}
 
-	@PutMapping("{pno}")
+	@PutMapping("/{pno}")
 	public Map<String, String> update(@PathVariable(name="pno") Long pno, ProductDTO productDTO) throws Exception {
 
 		productDTO.setPno(pno);
