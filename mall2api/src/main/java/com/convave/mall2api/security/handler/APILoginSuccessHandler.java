@@ -1,6 +1,7 @@
 package com.convave.mall2api.security.handler;
 
 import com.convave.mall2api.dto.MemberDTO;
+import com.convave.mall2api.util.JWTUtil;
 import com.google.gson.Gson;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -36,11 +37,11 @@ public class APILoginSuccessHandler implements AuthenticationSuccessHandler {
 
 		Map<String, Object> claims = memberDTO.getClaims();
 
-//		String accessToken = JWTUtil.generateToken(claims, 10);
-//		String refreshToken = JWTUtil.generateToken(claims, 60*24);
+		String accessToken = JWTUtil.generateToken(claims, 5);
+		String refreshToken = JWTUtil.generateToken(claims, 60*24);
 
-//		claims.put("accessToken",accessToken);
-//		claims.put("refreshToken",refreshToken);
+		claims.put("accessToken",accessToken);
+		claims.put("refreshToken",refreshToken);
 
 		Gson gson = new Gson();
 
