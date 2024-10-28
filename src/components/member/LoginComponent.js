@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {useDispatch} from "react-redux";
 import {login, loginPostAsync} from "../../slices/loginSlice";
 import {useNavigate} from "react-router-dom";
+import useCustomLogin from "../../hooks/useCustomLogin";
 
 const initState = {
 	email: '',
@@ -16,6 +17,7 @@ function LoginComponent() {
 
 	const dispatch = useDispatch();
 
+	const {doLogin, moveToPath} = useCustomLogin()
 	// const {doLogin, moveToPath} = useCustomLogin()
 
 
@@ -31,28 +33,43 @@ function LoginComponent() {
 
 	const handleClickLogin = (e) => {
 
+		doLogin(loginParam)
+				.then(data => {
+					console.log(data)
+
+					if(data.error) {
+						alert('이메일과 패스워드 확인')
+					}else{
+
+						alert('로그인 성공')
+						moveToPath('/')
+					}
+				})
+
+
+
 		// dispatch(login(loginParam))
 
 		// 비동기 처리를 위한 login 메서드가 아닌 loginPstAsync 기능 사용
-
-		dispatch((loginPostAsync(loginParam)))
-				.unwrap()
-				.then(data => {
-
-					console.log("after unwrap...")
-					console.log(data)
-
-
-					if (data.error) {
-						alert("이메일과 패스워드 확인해 주세요")
-					} else {
-						alert("로그인 성공");
-
-						navigate({pathname : '/'},{replace:true}) //뒤로 가기 했을 떄 로그인 화면 볼수 없게
-					}
-
-
-				})
+		//
+		// dispatch((loginPostAsync(loginParam)))
+		// 		.unwrap()
+		// 		.then(data => {
+		//
+		// 			console.log("after unwrap...")
+		// 			console.log(data)
+		//
+		//
+		// 			if (data.error) {
+		// 				alert("이메일과 패스워드 확인해 주세요")
+		// 			} else {
+		// 				alert("로그인 성공");
+		//
+		// 				navigate({pathname : '/'},{replace:true}) //뒤로 가기 했을 떄 로그인 화면 볼수 없게
+		// 			}
+		//
+		//
+		// 		})
 
 
 

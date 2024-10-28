@@ -1,5 +1,6 @@
 import {API_SERVER_HOST} from "./todoApi";
 import axios from "axios";
+import jwtAxios from "../util/jwtAxios";
 const host = `${API_SERVER_HOST}/api/products`
 
 export const postAdd = async (product) => {
@@ -18,7 +19,7 @@ export const getList = async (pageParam) => {
 
 	const {page, size} = pageParam;
 
-	const res = await axios.get(`${host}/list`, {params : {page : page, size : size}});
+	const res = await jwtAxios.get(`${host}/list`, {params : {page : page, size : size}});
 
 	return res.data;
 
